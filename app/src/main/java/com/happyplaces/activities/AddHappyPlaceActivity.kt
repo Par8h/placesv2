@@ -53,12 +53,12 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     private var saveImageToInternalStorage: Uri? = null
 
-    private var mLatitude: Double = 0.0 // A variable which will hold the latitude value.
-    private var mLongitude: Double = 0.0 // A variable which will hold the longitude value.
+    private var mLatitude: Double = 0.0
+    private var mLongitude: Double = 0.0
 
     private var mHappyPlaceDetails: HappyPlaceModel? = null
 
-    private lateinit var mFusedLocationClient: FusedLocationProviderClient // A fused location client variable which is further user to get the user's current location
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -249,14 +249,14 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
                             if (addHappyPlace > 0) {
                                 setResult(Activity.RESULT_OK);
-                                finish()//finishing activity
+                                finish()
                             }
                         } else {
                             val updateHappyPlace = dbHandler.updateHappyPlace(happyPlaceModel)
 
                             if (updateHappyPlace > 0) {
                                 setResult(Activity.RESULT_OK);
-                                finish()//finishing activity
+                                finish()
                             }
                         }
                     }
@@ -265,20 +265,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    /**
-     * Receive the result from a previous call to
-     * {@link #startActivityForResult(Intent, int)}.  This follows the
-     * related Activity API as described there in
-     * {@link Activity#onActivityResult(int, int, Intent)}.
-     *
-     * @param requestCode The integer request code originally supplied to
-     *                    startActivityForResult(), allowing you to identify who this
-     *                    result came from.
-     * @param resultCode The integer result code returned by the child activity
-     *                   through its setResult().
-     * @param data An Intent, which can return result data to the caller
-     *               (various data can be attached to Intent "extras").
-     */
+
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -286,7 +273,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 if (data != null) {
                     val contentURI = data.data
                     try {
-                        // Here this is used to get an bitmap from URI
+
                         @Suppress("DEPRECATION")
                         val selectedImageBitmap =
                                 MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)

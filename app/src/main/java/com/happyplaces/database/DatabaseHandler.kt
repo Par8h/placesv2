@@ -65,7 +65,7 @@ class DatabaseHandler(context: Context) :
         contentValues.put(KEY_LATITUDE, happyPlace.latitude)
         contentValues.put(KEY_LONGITUDE, happyPlace.longitude)
 
-        // Inserting Row
+
         val result = db.insert(TABLE_HAPPY_PLACE, null, contentValues)
 
 
@@ -73,15 +73,13 @@ class DatabaseHandler(context: Context) :
         return result
     }
 
-    /**
-     * Function to read all the list of Happy Places data which are inserted.
-     */
+
     fun getHappyPlacesList(): ArrayList<HappyPlaceModel> {
 
-        // A list is initialize using the data model class in which we will add the values from cursor.
+
         val happyPlaceList: ArrayList<HappyPlaceModel> = ArrayList()
 
-        val selectQuery = "SELECT  * FROM $TABLE_HAPPY_PLACE" // Database select query
+        val selectQuery = "SELECT  * FROM $TABLE_HAPPY_PLACE"
 
         val db = this.readableDatabase
 
@@ -122,7 +120,7 @@ class DatabaseHandler(context: Context) :
         contentValues.put(
             KEY_DESCRIPTION,
             happyPlace.description
-        ) // HappyPlaceModelClass DESCRIPTION
+        )
         contentValues.put(KEY_DATE, happyPlace.date) // HappyPlaceModelClass DATE
         contentValues.put(KEY_LOCATION, happyPlace.location) // HappyPlaceModelClass LOCATION
         contentValues.put(KEY_LATITUDE, happyPlace.latitude) // HappyPlaceModelClass LATITUDE
@@ -131,15 +129,13 @@ class DatabaseHandler(context: Context) :
         // Updating Row
         val success =
             db.update(TABLE_HAPPY_PLACE, contentValues, KEY_ID + "=" + happyPlace.id, null)
-        //2nd argument is String containing nullColumnHack
 
-        db.close() // Closing database connection
+
+        db.close()
         return success
     }
 
-    /**
-     * Function to delete happy place details.
-     */
+
     fun deleteHappyPlace(happyPlace: HappyPlaceModel): Int {
         val db = this.writableDatabase
         // Deleting Row
