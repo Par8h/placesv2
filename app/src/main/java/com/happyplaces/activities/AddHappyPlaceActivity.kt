@@ -62,7 +62,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //This call the parent constructor
+        
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_add_happy_place)
@@ -286,7 +286,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 if (data != null) {
                     val contentURI = data.data
                     try {
-                        // Here this is used to get an bitmap from URI
+                        
                         @Suppress("DEPRECATION")
                         val selectedImageBitmap =
                                 MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
@@ -310,7 +310,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                         saveImageToInternalStorage(thumbnail)
                 Log.e("Saved Image : ", "Path :: $saveImageToInternalStorage")
 
-                iv_place_image!!.setImageBitmap(thumbnail) // Set to the imageView.
+                iv_place_image!!.setImageBitmap(thumbnail) 
             }
             else if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
 
@@ -343,7 +343,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                 .withListener(object : MultiplePermissionsListener {
                     override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
 
-                        // Here after all the permission are granted launch the gallery to select and image.
+                        
                         if (report!!.areAllPermissionsGranted()) {
 
                             val galleryIntent = Intent(
@@ -418,34 +418,33 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun saveImageToInternalStorage(bitmap: Bitmap): Uri {
 
-        // Get the context wrapper instance
+        
         val wrapper = ContextWrapper(applicationContext)
 
-        // Initializing a new file
-        // The bellow line return a directory in internal storage
+       
 
         var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
 
-        // Create a file to save the image
+       
         file = File(file, "${UUID.randomUUID()}.jpg")
 
         try {
-            // Get the file output stream
+            
             val stream: OutputStream = FileOutputStream(file)
 
-            // Compress bitmap
+            
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
 
-            // Flush the stream
+            
             stream.flush()
 
-            // Close stream
+            
             stream.close()
-        } catch (e: IOException) { // Catch the exception
+        } catch (e: IOException) { 
             e.printStackTrace()
         }
 
-        // Return the saved image uri
+        
         return Uri.parse(file.absolutePath)
     }
 
@@ -484,8 +483,8 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             mLongitude = mLastLocation.longitude
             Log.e("Current Longitude", "$mLongitude")
 
-            // TODO(Step 2: Call the AsyncTask class fot getting an address from the latitude and longitude.)
-            // START
+            
+            
             val addressTask =
                     GetAddressFromLatLng(this@AddHappyPlaceActivity, mLatitude, mLongitude)
 
@@ -493,7 +492,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
                     GetAddressFromLatLng.AddressListener {
                 override fun onAddressFound(address: String?) {
                     Log.e("Address ::", "" + address)
-                    et_location.setText(address) // Address is set to the edittext
+                    et_location.setText(address) 
                 }
 
                 override fun onError() {
@@ -502,7 +501,7 @@ class AddHappyPlaceActivity : AppCompatActivity(), View.OnClickListener {
             })
 
             addressTask.getAddress()
-            // END
+            
         }
     }
 
