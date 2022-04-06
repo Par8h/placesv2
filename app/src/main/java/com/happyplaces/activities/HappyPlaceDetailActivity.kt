@@ -10,9 +10,7 @@ import kotlinx.android.synthetic.main.activity_happy_place_detail.*
 
 class HappyPlaceDetailActivity : AppCompatActivity() {
 
-    /**
-     * This function is auto created by Android when the Activity Class is created.
-     */
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_happy_place_detail)
