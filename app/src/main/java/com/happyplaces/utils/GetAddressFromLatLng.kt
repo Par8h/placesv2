@@ -62,4 +62,3 @@ class GetAddressFromLatLng(
         fun onError()
     }
 }
-// END
